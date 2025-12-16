@@ -6,20 +6,26 @@ import Loading from '../loading';
 import { DEFAULT_CURR_FROM, DEFAULT_CURR_TO } from '../defaults/defaults'
 
 function Selector({
-	from, to, onSelectFrom, onSelectTo, onSelectAmount
+	from, to, amount, onSelectFrom, onSelectTo, onSelectAmount
 }: {
 	from: string,
-	to: string
+	to: string,
+	amount: number,
 	onSelectFrom: Dispatch<SetStateAction<string>>,
 	onSelectTo: Dispatch<SetStateAction<string>>
 	onSelectAmount: Dispatch<SetStateAction<number>>
 }) {
 	return (
 		<div id="selector">
+			<button onClick={() => {
+				onSelectFrom(DEFAULT_CURR_FROM)
+				onSelectTo(DEFAULT_CURR_TO)
+				onSelectAmount(100)
+			}}>Clear</button>
 			<input
 				id="amount"
 				type="number"
-				defaultValue={100}
+				value={amount}
 				onChange={(e) => onSelectAmount(Number(e.target.value))}
 			/>
 			<div>
@@ -74,6 +80,7 @@ export default function Converter() {
 			<Selector
 				from={from}
 				to={to}
+				amount={amount}
 				onSelectFrom={setFrom}
 				onSelectTo={setTo}
 				onSelectAmount={setAmount}
