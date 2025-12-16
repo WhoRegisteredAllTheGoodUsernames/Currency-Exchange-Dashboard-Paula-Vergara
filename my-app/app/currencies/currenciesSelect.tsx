@@ -3,14 +3,13 @@ import { Currencies, getCurrencies } from '../currencies/currencies';
 import Loading from '../loading';
 
 export default function CurrenciesSelect({
-		id, onSelect, def
+		id, onSelect, value
 	}: {
 		id: string,
 		onSelect: Dispatch<SetStateAction<string>>
-		def: string
+		value: string
 	}) {
 	const [currencies, setCurrencies] = useState<Currencies | null>(null);
-
 	useEffect(() => {
 		const data = async () => {
 			setCurrencies(await getCurrencies())
@@ -29,7 +28,7 @@ export default function CurrenciesSelect({
 	return (
 		<select
 			id={id}
-			defaultValue={def}
+			value={value}
 			onChange={(e) => onSelect(e.target.value)}
 		>
 			{options}
