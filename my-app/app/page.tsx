@@ -8,9 +8,7 @@ import Footer from './ui/footer';
 export default function Home() {
 	return (
 		<div>
-			<header>
-				<Header />
-			</header>
+			<Header />
 			<main>
 				<Suspense fallback={<Loading />}>
 					<Overview />
