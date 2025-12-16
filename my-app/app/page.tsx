@@ -17,9 +17,7 @@ export default function Home() {
 					<Converter />
 				</Suspense>
 			</main>
-			<footer>
-				<Footer />
-			</footer>
+			<Footer />
 		</div>
 	);
 }
