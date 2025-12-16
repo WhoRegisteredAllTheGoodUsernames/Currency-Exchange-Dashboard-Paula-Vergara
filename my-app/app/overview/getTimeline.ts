@@ -1,4 +1,5 @@
 import { Currencies, getCurrencies } from '../currencies/currencies'
+import formatDate from '../utils/formatDate'
 
 interface TimeSeriesData {
 	"base": string,
@@ -18,12 +19,6 @@ export interface Data {
 		"label": string,
 		"data": number[]
 	}[]
-}
-
-const formatter = Intl.DateTimeFormat("sv-SE", {year: "numeric", month: "2-digit", day: "2-digit"})
-
-function formatDate(date: Date) {
-	return formatter.format(date)
 }
 
 export async function getTimeline(base: string, from: string, to: string) {

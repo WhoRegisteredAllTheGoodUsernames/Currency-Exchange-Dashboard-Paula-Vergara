@@ -3,10 +3,11 @@ import { Currencies, getCurrencies } from '../currencies/currencies';
 import Loading from '../loading';
 
 export default function CurrenciesSelect({
-		id, onSelect
+		id, onSelect, def
 	}: {
 		id: string,
 		onSelect: Dispatch<SetStateAction<string>>
+		def: string
 	}) {
 	const [currencies, setCurrencies] = useState<Currencies | null>(null);
 
@@ -28,6 +29,7 @@ export default function CurrenciesSelect({
 	return (
 		<select
 			id={id}
+			defaultValue={def}
 			onChange={(e) => onSelect(e.target.value)}
 		>
 			{options}

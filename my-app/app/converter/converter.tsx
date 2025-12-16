@@ -3,6 +3,7 @@ import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import CurrenciesSelect from '../currencies/currenciesSelect';
 import getResult from './getResult';
 import Loading from '../loading';
+import { DEFAULT_CURR_FROM, DEFAULT_CURR_TO } from '../defaults/defaults'
 
 function Selector({
 	onSelectFrom, onSelectTo, onSelectAmount
@@ -16,16 +17,19 @@ function Selector({
 			<input
 				id="amount"
 				type="number"
+				defaultValue={100}
 				onChange={(e) => onSelectAmount(Number(e.target.value))}
 			/>
 			<div>
 				<CurrenciesSelect
+					def={DEFAULT_CURR_FROM}
 					id="from"
 					onSelect={onSelectFrom}
 				/>
 			</div>
 			<div>
 				<CurrenciesSelect
+					def={DEFAULT_CURR_TO}
 					id="to"
 					onSelect={onSelectTo}
 				/>
@@ -41,7 +45,7 @@ function Result({
 	to: string,
 	amount: number
 }) {
-	const [result, setResult] = useState<number | null>(null);
+	const [result, setResult] = useState<number>(100);
 
 	useEffect(() => {
 		const data = async () => {
@@ -60,9 +64,9 @@ function Result({
 
 // Asegurarse que se desbuguee con los valores por defecto
 export default function Converter() {
-	const [from, setFrom] = useState("EUR");
-	const [to, setTo] = useState("USD");
-	const [amount, setAmount] = useState(0);
+	const [from, setFrom] = useState(DEFAULT_CURR_FROM);
+	const [to, setTo] = useState(DEFAULT_CURR_TO);
+	const [amount, setAmount] = useState(100);
 	return (
 		<div>
 			<Selector
