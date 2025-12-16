@@ -23,7 +23,7 @@ export interface Data {
 
 export async function getTimeline(base: string, from: string, to: string) {
 	let range = "latest"
-	const fromDate = new Date(from), toDate = new Date(to)
+	const fromDate = new Date(Date.parse(from) + 24*60*60*1000), toDate = new Date(Date.parse(to) + 24*60*60*1000)
 
 	if (fromDate.getTime() < toDate.getTime()){
 		range = formatDate(fromDate) + '..' + formatDate(toDate)
