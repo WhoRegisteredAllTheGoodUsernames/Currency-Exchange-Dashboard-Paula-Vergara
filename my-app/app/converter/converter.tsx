@@ -6,8 +6,10 @@ import Loading from '../loading';
 import { DEFAULT_CURR_FROM, DEFAULT_CURR_TO } from '../defaults/defaults'
 
 function Selector({
-	onSelectFrom, onSelectTo, onSelectAmount
+	from, to, onSelectFrom, onSelectTo, onSelectAmount
 }: {
+	from: string,
+	to: string
 	onSelectFrom: Dispatch<SetStateAction<string>>,
 	onSelectTo: Dispatch<SetStateAction<string>>
 	onSelectAmount: Dispatch<SetStateAction<number>>
@@ -22,14 +24,14 @@ function Selector({
 			/>
 			<div>
 				<CurrenciesSelect
-					def={DEFAULT_CURR_FROM}
+					value={from}
 					id="from"
 					onSelect={onSelectFrom}
 				/>
 			</div>
 			<div>
 				<CurrenciesSelect
-					def={DEFAULT_CURR_TO}
+					value={to}
 					id="to"
 					onSelect={onSelectTo}
 				/>
@@ -70,6 +72,8 @@ export default function Converter() {
 	return (
 		<div>
 			<Selector
+				from={from}
+				to={to}
 				onSelectFrom={setFrom}
 				onSelectTo={setTo}
 				onSelectAmount={setAmount}

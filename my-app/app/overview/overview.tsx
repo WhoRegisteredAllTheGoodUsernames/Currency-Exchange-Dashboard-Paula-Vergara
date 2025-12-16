@@ -8,40 +8,37 @@ import Loading from '../loading'
 import { DEFAULT_CURR_BASE, DEFAULT_DATE_FROM, DEFAULT_DATE_TO } from '../defaults/defaults'
 
 function Selector({
-	onSelectBase, onSelectFrom, onSelectTo
+	from, to, base, onSelectBase, onSelectFrom, onSelectTo
 }: {
+	from: string,
+	to: string,
+	base: string,
 	onSelectBase: Dispatch<SetStateAction<string>>,
 	onSelectFrom: Dispatch<SetStateAction<string>>,
 	onSelectTo: Dispatch<SetStateAction<string>>
 }) {
-	const [from, setFrom] = useState(DEFAULT_DATE_FROM);
-	const [to, setTo] = useState(DEFAULT_DATE_TO);
-	
 	return (
 		<div id="selector">
+		<button onClick={() => {
+			onSelectFrom(DEFAULT_DATE_FROM)
+			onSelectTo(DEFAULT_DATE_TO)
+			onSelectBase(DEFAULT_CURR_BASE)
+		}}>Clear</button>
 			<input
 				id="from"
-				defaultValue={DEFAULT_DATE_FROM}
+				value={from}
 				type="date"
 				max={to}
-				onChange={(e) => {
-					onSelectFrom(e.target.value)
-					setFrom(e.target.value)
-				}}
-			/>
+				onChange={(e) => onSelectFrom(e.target.value)}/>
 			<input
 				id="to"
-				defaultValue={DEFAULT_DATE_TO}
+				value={to}
 				min={from}
 				type="date"
-				onChange={(e) => {
-					onSelectTo(e.target.value)
-					setTo(e.target.value)
-				}}
-			/>
+				onChange={(e) => onSelectTo(e.target.value)}/>
 			<div>
 				<CurrenciesSelect
-					def={DEFAULT_CURR_BASE}
+					value={base}
 					id="base"
 					onSelect={onSelectBase}
 				/>
@@ -81,6 +78,9 @@ export default function Overview() {
 	return (
 		<div>
 			<Selector
+				from={from}
+				to={to}
+				base={base}
 				onSelectBase={setBase}
 				onSelectFrom={setFrom}
 				onSelectTo={setTo}
