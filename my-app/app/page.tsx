@@ -7,9 +7,9 @@ import Footer from './ui/footer';
 
 export default function Home() {
 	return (
-		<div>
+		<div className="flex flex-col min-h-screen">
 			<Header />
-			<main>
+			<main className="grow">
 				<Suspense fallback={<Loading />}>
 					<Overview />
 				</Suspense>
