@@ -1,4 +1,5 @@
 'use client'
+
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import CurrenciesSelect from '../currencies/currenciesSelect';
 import getResult from './getResult';

@@ -1,3 +1,5 @@
+"use server"
+
 import { Currencies, getCurrencies } from '../currencies/currencies'
 import formatDate from '../utils/formatDate'
 

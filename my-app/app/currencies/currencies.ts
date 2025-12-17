@@ -1,3 +1,5 @@
+"use server"
+
 export type Currencies = Record<string, string>;
 
 export async function getCurrencies() {

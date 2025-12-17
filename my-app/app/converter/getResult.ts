@@ -1,3 +1,5 @@
+"use server"
+
 export default async function getResult(from: string, to: string, amount: number) {
 	if (from == to){
 		return amount
