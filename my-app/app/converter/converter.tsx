@@ -15,37 +15,6 @@ function Selector({
 	onSelectTo: Dispatch<SetStateAction<string>>
 	onSelectAmount: Dispatch<SetStateAction<number>>
 }) {
-//		<div className="flex flex-col items-center gap-5"
-//			id="selector"
-//		>
-//				<CurrenciesSelect
-//					value={base}
-//					id="base"
-//					onSelect={onSelectBase}
-//				/>
-//			<div className="flex gap-2 items-center flex-col">
-//				<div className="flex gap-5 items-center">
-//					<label>From</label>
-//					<input
-//						className="w-min border rounded-sm border-stone-300 p-2"
-//						id="from"
-//						value={from}
-//						type="date"
-//						max={to}
-//						onChange={(e) => onSelectFrom(e.target.value)}/>
-//				</div>
-//				<div className="flex gap-5 items-center">
-//					<label>To</label>
-//					<input
-//						className="w-min border rounded-sm border-stone-300 p-2"
-//						id="to"
-//						value={to}
-//						min={from}
-//						type="date"
-//						onChange={(e) => onSelectTo(e.target.value)}/>
-//				</div>
-//			</div>
-//		</div>
 	return (
 		<div className="flex flex-col md:flex-row gap-5 items-center"
 			id="selector"
@@ -65,6 +34,12 @@ function Selector({
 						onSelect={onSelectFrom}
 					/>
 				</div>
+				<button
+					className="rounded-sm active:bg-sky-200 bg-sky-300 p-2"
+					onClick={() => {
+						onSelectFrom(to)
+						onSelectTo(from)
+				}}>&#8644;</button>
 				<div className="flex gap-5 items-center">
 					<label>To</label>
 					<CurrenciesSelect
