@@ -15,32 +15,71 @@ function Selector({
 	onSelectTo: Dispatch<SetStateAction<string>>
 	onSelectAmount: Dispatch<SetStateAction<number>>
 }) {
+//		<div className="flex flex-col items-center gap-5"
+//			id="selector"
+//		>
+//				<CurrenciesSelect
+//					value={base}
+//					id="base"
+//					onSelect={onSelectBase}
+//				/>
+//			<div className="flex gap-2 items-center flex-col">
+//				<div className="flex gap-5 items-center">
+//					<label>From</label>
+//					<input
+//						className="w-min border rounded-sm border-stone-300 p-2"
+//						id="from"
+//						value={from}
+//						type="date"
+//						max={to}
+//						onChange={(e) => onSelectFrom(e.target.value)}/>
+//				</div>
+//				<div className="flex gap-5 items-center">
+//					<label>To</label>
+//					<input
+//						className="w-min border rounded-sm border-stone-300 p-2"
+//						id="to"
+//						value={to}
+//						min={from}
+//						type="date"
+//						onChange={(e) => onSelectTo(e.target.value)}/>
+//				</div>
+//			</div>
+//		</div>
 	return (
-		<div id="selector">
-			<button onClick={() => {
-				onSelectFrom(DEFAULT_CURR_FROM)
-				onSelectTo(DEFAULT_CURR_TO)
-				onSelectAmount(100)
-			}}>Clear</button>
-			<input
+		<div className="flex flex-col md:flex-row gap-5 items-center"
+			id="selector"
+		>
+			<input className="border rounded-sm border-stone-300 p-2"
 				id="amount"
 				type="number"
 				value={amount}
 				onChange={(e) => onSelectAmount(Number(e.target.value))}
 			/>
-			<div>
-				<CurrenciesSelect
-					value={from}
-					id="from"
-					onSelect={onSelectFrom}
-				/>
-			</div>
-			<div>
-				<CurrenciesSelect
-					value={to}
-					id="to"
-					onSelect={onSelectTo}
-				/>
+			<div className="flex gap-2 items-center flex-col sm:flex-row">
+				<div className="flex gap-5 items-center">
+					<label>From</label>
+					<CurrenciesSelect
+						value={from}
+						id="from"
+						onSelect={onSelectFrom}
+					/>
+				</div>
+				<div className="flex gap-5 items-center">
+					<label>To</label>
+					<CurrenciesSelect
+						value={to}
+						id="to"
+						onSelect={onSelectTo}
+					/>
+				</div>
+				<button
+					className="rounded-sm active:bg-stone-200 bg-stone-300 p-2"
+					onClick={() => {
+						onSelectFrom(DEFAULT_CURR_FROM)
+						onSelectTo(DEFAULT_CURR_TO)
+						onSelectAmount(100)
+				}}>Clear</button>
 			</div>
 		</div>
 	)
@@ -66,7 +105,13 @@ function Result({
 		return <Loading />
 	}
 
-	return <p>Resultado: {result}</p>;
+	return (
+		<div>
+			<p className="text-[2rem]">
+				Result: <span className="font-bold">{result}</span>
+			</p>
+		</div>
+	);
 }
 
 
@@ -76,7 +121,7 @@ export default function Converter() {
 	const [to, setTo] = useState(DEFAULT_CURR_TO);
 	const [amount, setAmount] = useState(100);
 	return (
-		<div>
+		<div className="px-5 py-10 flex flex-col gap-5 items-center max-w-full">
 			<Selector
 				from={from}
 				to={to}
