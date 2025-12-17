@@ -6,6 +6,8 @@ import CurrenciesSelect from '../currencies/currenciesSelect'
 import { Data, getTimeline } from './getTimeline'
 import Loading from '../loading'
 import { DEFAULT_CURR_BASE, DEFAULT_DATE_FROM, DEFAULT_DATE_TO } from '../defaults/defaults'
+import Button from '../ui/button'
+import DateSelector from '../ui/dateSelector'
 
 function Selector({
 	from, to, base, onSelectBase, onSelectFrom, onSelectTo
@@ -27,34 +29,31 @@ function Selector({
 					onSelect={onSelectBase}
 				/>
 			<div className="flex gap-2 items-center flex-col">
-				<div className="flex gap-5 items-center">
-					<label>From</label>
-					<input
-						className="w-min border rounded-sm border-stone-300 p-2"
-						id="from"
-						value={from}
-						type="date"
-						max={to}
-						onChange={(e) => onSelectFrom(e.target.value)}/>
-				</div>
-				<div className="flex gap-5 items-center">
-					<label>To</label>
-					<input
-						className="w-min border rounded-sm border-stone-300 p-2"
-						id="to"
-						value={to}
-						min={from}
-						type="date"
-						onChange={(e) => onSelectTo(e.target.value)}/>
-				</div>
+				<DateSelector
+					id="from"
+					label="From"
+					value={from}
+					max={to}
+					min=""
+					action={(e) => onSelectFrom(e.target.value)}
+				/>
+				<DateSelector
+					id="to"
+					label="To"
+					value={to}
+					max=""
+					min={from}
+					action={(e) => onSelectTo(e.target.value)}
+				/>
 			</div>
-			<button
-				className="rounded-sm active:bg-stone-200 bg-stone-300 p-2"
-				onClick={() => {
+			<Button
+				text="Clear"
+				baseColor="stone"
+				action={() => {
 					onSelectFrom(DEFAULT_DATE_FROM)
 					onSelectTo(DEFAULT_DATE_TO)
 					onSelectBase(DEFAULT_CURR_BASE)
-			}}>Clear</button>
+				}}/>
 		</div>
 	)
 }

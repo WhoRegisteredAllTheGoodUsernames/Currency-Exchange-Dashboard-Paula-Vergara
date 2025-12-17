@@ -4,6 +4,7 @@ import CurrenciesSelect from '../currencies/currenciesSelect';
 import getResult from './getResult';
 import Loading from '../loading';
 import { DEFAULT_CURR_FROM, DEFAULT_CURR_TO } from '../defaults/defaults'
+import Button from '../ui/button'
 
 function Selector({
 	from, to, amount, onSelectFrom, onSelectTo, onSelectAmount
@@ -34,12 +35,13 @@ function Selector({
 						onSelect={onSelectFrom}
 					/>
 				</div>
-				<button
-					className="rounded-sm active:bg-sky-200 bg-sky-300 p-2"
-					onClick={() => {
+				<Button
+					text="&#8644;"
+					baseColor="sky"
+					action={() => {
 						onSelectFrom(to)
 						onSelectTo(from)
-				}}>&#8644;</button>
+					}} />
 				<div className="flex gap-5 items-center">
 					<label>To</label>
 					<CurrenciesSelect
@@ -48,13 +50,14 @@ function Selector({
 						onSelect={onSelectTo}
 					/>
 				</div>
-				<button
-					className="rounded-sm active:bg-stone-200 bg-stone-300 p-2"
-					onClick={() => {
+				<Button
+					text="Clear"
+					baseColor="stone"
+					action={() => {
 						onSelectFrom(DEFAULT_CURR_FROM)
 						onSelectTo(DEFAULT_CURR_TO)
 						onSelectAmount(100)
-				}}>Clear</button>
+					}}/>
 			</div>
 		</div>
 	)
