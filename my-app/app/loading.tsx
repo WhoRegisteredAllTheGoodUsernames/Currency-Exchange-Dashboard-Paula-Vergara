@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <p>Loading...</p>
+  return <span className="italic font-thin">Loading...</span>
 }

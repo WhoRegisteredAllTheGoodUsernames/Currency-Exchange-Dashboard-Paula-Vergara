@@ -9,13 +9,15 @@ export default function Home() {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<main className="grow">
+			<main className="grow flex flex-col">
 				<Suspense fallback={<Loading />}>
 					<Overview />
 				</Suspense>
-				<Suspense fallback={<Loading />}>
-					<Converter />
-				</Suspense>
+				<div className="grow flex flex-row justify-center items-center">
+					<Suspense fallback={<Loading />}>
+						<Converter />
+					</Suspense>
+				</div>
 			</main>
 			<Footer />
 		</div>

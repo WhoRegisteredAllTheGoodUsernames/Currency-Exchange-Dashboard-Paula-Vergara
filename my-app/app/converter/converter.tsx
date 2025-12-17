@@ -17,7 +17,7 @@ function Selector({
 	onSelectAmount: Dispatch<SetStateAction<number>>
 }) {
 	return (
-		<div className="flex flex-col md:flex-row gap-5 items-center"
+		<div className="flex flex-col lg:flex-row gap-5 items-center"
 			id="selector"
 		>
 			<input className="border rounded-sm border-stone-300 p-2"
