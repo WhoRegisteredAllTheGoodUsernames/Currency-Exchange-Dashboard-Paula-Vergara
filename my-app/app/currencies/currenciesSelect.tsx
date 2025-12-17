@@ -26,13 +26,15 @@ export default function CurrenciesSelect({
 	))
 
 	return (
-		<select
-			id={id}
-			value={value}
-			onChange={(e) => onSelect(e.target.value)}
-		>
-			{options}
-		</select>
+		<div className="w-min border rounded-sm border-stone-300 p-2">
+			<select
+				id={id}
+				value={value}
+				onChange={(e) => onSelect(e.target.value)}
+			>
+				{options}
+			</select>
+		</div>
 	)
 
 }
