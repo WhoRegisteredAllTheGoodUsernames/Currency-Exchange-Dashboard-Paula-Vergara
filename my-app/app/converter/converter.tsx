@@ -93,8 +93,6 @@ function Result({
 	);
 }
 
-
-// Asegurarse que se desbuguee con los valores por defecto
 export default function Converter() {
 	const [from, setFrom] = useState(DEFAULT_CURR_FROM);
 	const [to, setTo] = useState(DEFAULT_CURR_TO);

@@ -1,4 +1,8 @@
+"use client"
+
 import formatDate from '../utils/formatDate'
+
+// Sets defaults for currencies and dates used in selectors
 
 const date = new Date()
 

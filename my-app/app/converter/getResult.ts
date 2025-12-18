@@ -1,5 +1,7 @@
 "use server"
 
+// Fetches the latest exchange rate for the currencies and calculates the
+// 	equivalent amount
 export default async function getResult(from: string, to: string, amount: number) {
 	if (from == to){
 		return amount
@@ -9,6 +11,11 @@ export default async function getResult(from: string, to: string, amount: number
 		cache: 'force-cache',
 	next: { revalidate: false }
 	})
+
+	if (!res.ok) {
+		throw Error("Fetch failed")
+	}
+
 	const data = await res.json()
 	const conversion = await data.rates[to] * amount
 

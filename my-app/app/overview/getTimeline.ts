@@ -23,10 +23,13 @@ export interface Data {
 	}[]
 }
 
+// Fetches the exchange data for date range, base currency and the comparison
+// 	currencies and generates a data dict for Chart.js to use in a multiline chart.
 export async function getTimeline(base: string, from: string, to: string) {
 	let range = "latest"
 	const fromDate = new Date(Date.parse(from) + 24*60*60*1000), toDate = new Date(Date.parse(to) + 24*60*60*1000)
 
+	// Uses only the latest data if the date is not correct
 	if (fromDate.getTime() < toDate.getTime()){
 		range = formatDate(fromDate) + '..' + formatDate(toDate)
 	}
@@ -34,6 +37,8 @@ export async function getTimeline(base: string, from: string, to: string) {
 	const currencies: Currencies = await getCurrencies();
 	const selected: string[] = []
 	let i = 10
+
+	// Filters the base from comparison
 	for (const currency of Object.keys(currencies)){
 		if (i <= 0)
 			break
@@ -45,6 +50,11 @@ export async function getTimeline(base: string, from: string, to: string) {
 	}
 
 	const res = await fetch(`https://api.frankfurter.dev/v1/${range}?base=${base}&symbols=${selected.toString()}`)
+	
+	if (!res.ok){
+		throw Error("Fetch failed")
+	}
+	
 	const data: TimeSeriesData = await res.json()
 	const dates: string[] = []
 	const currencyValues: Record<string, number[]> = {}
