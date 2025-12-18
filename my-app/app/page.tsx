@@ -1,14 +1,21 @@
+"use client"
+
 import { Suspense } from 'react';
 import Loading from './loading';
 import Converter from './converter/converter';
 import Overview from './overview/overview';
 import Header from './ui/header';
 import Footer from './ui/footer';
+import Overlay from './ui/overlay';
+import useOnlineStatus from './utils/useOnlineStatus'
 
 export default function Home() {
+	const isOnline = useOnlineStatus()
+
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
+			{!isOnline && <Overlay />}
 			<main className="grow flex flex-col">
 				<Suspense fallback={<Loading />}>
 					<Overview />

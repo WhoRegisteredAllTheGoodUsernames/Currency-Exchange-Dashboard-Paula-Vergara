@@ -9,7 +9,7 @@ export default function CurrenciesSelect({
 		onSelect: Dispatch<SetStateAction<string>>
 		value: string
 	}) {
-	const [currencies, setCurrencies] = useState<Currencies | null>(null);
+	const [currencies, setCurrencies] = useState<Currencies | null>(null)
 	useEffect(() => {
 		const data = async () => {
 			setCurrencies(await getCurrencies())
